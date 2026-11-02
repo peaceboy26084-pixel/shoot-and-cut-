@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoot and Cut | Video Production & Social Media Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #09090b;
+      --card-bg: #121216;
+      --accent-red: #ef4444;
+      --accent-dark-red: #991b1b;
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --border: rgba(239, 68, 68, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(239, 68, 68, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(153, 27, 27, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    h1, h2, h3, .brand-font {
+      font-family: 'Syne', sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 9, 11, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span {
+      color: var(--accent-red);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent-red);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-red {
+      background-color: var(--accent-red);
+      color: #fff;
+    }
+
+    .btn-red:hover {
+      background-color: #dc2626;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid var(--border);
+      color: var(--accent-red);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-red);
+    }
+
+    .service-card i {
+      font-size: 2rem;
+      color: var(--accent-red);
+      margin-bottom: 1.2rem;
+      display: inline-block;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card ul {
+      list-style: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .service-card ul li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .portfolio-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .portfolio-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background-color: #1a1a20;
+    }
+
+    .portfolio-card .content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .portfolio-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .portfolio-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card.popular {
+      border-color: var(--accent-red);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.05) 0%, var(--card-bg) 100%);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: var(--accent-red);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.8rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .pricing-card .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 1rem 0 1.5rem 0;
+      color: var(--text);
+    }
+
+    .pricing-card .price span {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+
+    .pricing-card ul li {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pricing-card ul li i {
+      color: var(--accent-red);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-clapperboard" style="color: var(--accent-red);"></i>
+      SHOOT <span>&</span> CUT
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#hospitality">Hospitality</a>
+      <a href="#music">Music</a>
+      <a href="#pricing">Packages</a>
+      <a href="#contact" class="btn btn-red" style="padding: 0.4rem 1rem;">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="tagline">Creative Production • Reels • Social Media</div>
+      <h1>WE CREATE CONTENT THAT MAKES PEOPLE STOP SCROLLING.</h1>
+      <p>Helping cafes, restaurants, hotels, and music groups build an aesthetic and high-converting visual presence across Instagram.</p>
+      <div class="hero-buttons">
+        <a href="#pricing" class="btn btn-red">View Packages</a>
+        <a href="mailto:shootcut25@gmail.com" class="btn btn-outline">Email Us</a>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-header">
+        <h2>Our Core Expertise</h2>
+        <p>End-to-end creative visual production tailored for social-first platforms.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fa-solid fa-video"></i>
+          <h3>Reel Production</h3>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Concept ideation & hooks</li>
+            <li><i class="fa-solid fa-check"></i> High-definition shooting</li>
+            <li><i class="fa-solid fa-check"></i> Trend-focused formats</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-film"></i>
+          <h3>Video Editing</h3>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Dynamic cuts & transitions</li>
+            <li><i class="fa-solid fa-check"></i> Cinematic color grading</li>
+            <li><i class="fa-solid fa-check"></i> Audio beat matching & sound design</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-camera"></i>
+          <h3>Food & Ambience</h3>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Macro food textures & pours</li>
+            <li><i class="fa-solid fa-check"></i> Warm cafe lighting & seating</li>
+            <li><i class="fa-solid fa-check"></i> Architectural aesthetic frames</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Page Management</h3>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Content planning & calendar</li>
+            <li><i class="fa-solid fa-check"></i> Compelling captions & hashtags</li>
+            <li><i class="fa-solid fa-check"></i> Scheduled publishing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="hospitality">
+      <div class="section-header">
+        <h2>Hospitality Collaborations</h2>
+        <p>Visual storytelling crafted for cafes, fine dining, and luxury resorts.</p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <img src="Gemini_Generated_Image_g8ptqug8ptqug8pt_2.png" alt="The Aava Cafe">
+          <div class="content">
+            <div>
+              <h3>The Aava Cafe</h3>
+              <p>Coffee craftsmanship, aesthetic ambience, and signature drink promotion.</p>
+            </div>
+            <a href="https://www.instagram.com/the_aava_official?xtok=MTUycHgyZmRqNWxrbg==" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <i class="fa-brands fa-instagram"></i> View on Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="Gemini_Generated_Image_38yvb438yvb438yv_2.png" alt="Hotel Omkar Palace">
+          <div class="content">
+            <div>
+              <h3>Hotel Omkar Palace</h3>
+              <p>Luxury hospitality videography, interior layout, and guest room aesthetics.</p>
+            </div>
+            <a href="https://www.instagram.com/hotel_omkar_palace?exln=MTF2bnY3cTRpODM=" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <i class="fa-brands fa-instagram"></i> View on Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="Gemini_Generated_Image_arowzyarowzyarow_2.png" alt="Radhe Krishna Resort">
+          <div class="content">
+            <div>
+              <h3>Radhe Krishna Resort</h3>
+              <p>Event celebration venue, night lighting visuals, and luxury stay coverage.</p>
+            </div>
+            <a href="https://www.instagram.com/radhe_krishna_resort_?obrf=bmtwdjBsZ2U5dTJ6" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <i class="fa-brands fa-instagram"></i> View on Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="Gemini_Generated_Image_mrphyfmrphyfmrph_2.png" alt="Sada Shiv Dhaba">
+          <div class="content">
+            <div>
+              <h3>Sada Shiv Dhaba</h3>
+              <p>Authentic culinary presentation, kitchen action, and dining footfall reels.</p>
+            </div>
+            <a href="https://www.instagram.com/sada_shiv_dhaba_ujjain?exln=cjhoN3M3NnNpaXA0" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <i class="fa-brands fa-instagram"></i> View on Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="music">
+      <div class="section-header">
+        <h2>Live Concerts & Artists</h2>
+        <p>Capturing the live energy, stage moments, and crowd engagement.</p>
+      </div>
+      <div class="portfolio-grid" style="max-width: 900px; margin: 0 auto;">
+        <div class="portfolio-card">
+          <img src="IMG_3171_3.jpg" alt="Vasudev Musicals Concert Crowd">
+          <div class="content">
+            <div>
+              <h3>Vasudev Musicals</h3>
+              <p>High-energy stage performances, audience reactions, and event highlight reels.</p>
+            </div>
+            <a href="https://www.instagram.com/vasudev_musicals?vrfl=MTlocmVpenFvaGxzag==" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <i class="fa-brands fa-instagram"></i> View on Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="IMG_3166.JPG (1)_3.jpg" alt="Aavartan The Band">
+          <div class="content">
+            <div>
+              <h3>Aavartan The Band</h3>
+              <p>Live band sets, backstage camaraderie, and acoustic musical releases.</p>
+            </div>
+            <a href="https://www.instagram.com/aavartan_live?mdxt=bmN2a3lmM2xtYTV6" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <i class="fa-brands fa-instagram"></i>
